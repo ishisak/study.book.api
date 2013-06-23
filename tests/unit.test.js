@@ -12,7 +12,7 @@ describe('study.book',function(){
 
             isbn.getBookForUser(number, function(err, data){
                 assert.strictEqual(data[0].title,'English Grammar in Use with Answers');
-                assert.strictEqual(data[0].title,'English Grammar in Use with Answers');
+                assert.strictEqual(data[0].pages, 390);
 
                 done();
             });

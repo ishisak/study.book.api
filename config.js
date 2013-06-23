@@ -15,8 +15,8 @@
 
 module.exports = {
     'isbn': {
-        host:'isbndb.com',
-        path:'/api/v2/json/2DAJ7GKP/books?q='
+        host:'www.googleapis.com',
+        path:'/books/v1/volumes?q='
     }
 
 }

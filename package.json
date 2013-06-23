@@ -2,15 +2,13 @@
   "name": "study.book",
   "version": "0.1.0",
   "description": "study.book",
-  "main": "hello-world-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+    "start": "node app.js"
   },
   "repository": "",
   "keywords": [
     "Node.js",
-    "Eclipse",
-    "Nodeclipse"
   ],
   "author": "",
   "license": "BSD",
