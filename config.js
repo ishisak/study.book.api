@@ -7,16 +7,22 @@
  */
 
 /**
- * Constructor for the search configuration object
+ * Constructor for the book configuration object
  *
- * @class fc.modules.search.config
+ * @class study.book.config
  * @public
  */
 
-module.exports = {
+function BookApi () {
+  this.host = 'www.googleapis.com';
+  this.path = '/books/v1/volumes?q=isbn:';
+}
+module.exports = BookApi;
+/*
+{
     'isbn': {
         host:'www.googleapis.com',
-        path:'/books/v1/volumes?q='
-    }
+        path:'/books/v1/volumes?q=isbn:'
+    };
 
-}
+}*/

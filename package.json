@@ -6,6 +6,10 @@
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1",
     "start": "node app.js"
   },
+  "dependencies": {
+    "express": ">= 1.2.0",
+    "mongodb": "1.1.11"
+  },
   "repository": "",
   "keywords": [
     "Node.js"
