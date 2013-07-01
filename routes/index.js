@@ -16,7 +16,7 @@ exports.getIsbn = function(req, res) {
   });
 
 }
-            ///user/regist/:0999999/:9780521189064/
+
 exports.getUser = function(req, res) {
   var book = new Book;
 
@@ -44,6 +44,32 @@ exports.registUser = function(req, res) {
       res.send(data);
     }
   });
+};
 
+exports.resetUser = function(req, res) {
+  var book = new Book;
 
+//  var re = '0999999';
+  console.log('Get to ' + req.params.id );
+  book.resetBookForUser(req.params.id, function(err, data){
+    if(err) {
+      res.send(err)
+    } else {
+      res.send(data);
+    }
+  });
+};
+
+exports.setProgress = function(req, res) {
+  var book = new Book;
+
+//  var re = '0999999';
+  console.log('Get to ' + req.params.id + req.param.page);
+  book.setProgress(req.params, function(err, data){
+    if(err) {
+      res.send(err)
+    } else {
+      res.send(data);
+    }
+  });
 };

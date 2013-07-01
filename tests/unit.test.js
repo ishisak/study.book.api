@@ -11,8 +11,8 @@ describe('study.book',function(){
       var obj = {num: '9780521189064', id: '0999999'};
 
       book.getBookFromIsbn(obj, function(err, data){
-        assert.strictEqual(data[0].title,'English Grammar in Use with Answers');
-        assert.strictEqual(data[0].pages, 390);
+        assert.strictEqual(data.books[0].title,'English Grammar in Use with Answers');
+        assert.strictEqual(data.books[0].pages, 390);
 
         done();
       });
@@ -31,27 +31,15 @@ describe('study.book',function(){
       });
     });
 
-    it('should return 203 from a ISBN code',function(done){
+    it('should return registed data after set user info',function(done){
       var book = new Book;
 
-
-      var obj = {
-        userId: '0999999',
-        bookInfo: [{
-          bookKey: 9780521189064,
-          numberOfPages: 390,
-          targetEndDate: new Date(),
-          bookStartDate: new Date(),
-          bookStatus: true,
-          progress : {
-            startPage: 23
-          }
-        }]};
+      var obj = {'id':'0999999', 'num': '9780521189064', 'date':'2013,07,31'}
       book.setBookForUser(obj, function(err, data){
        // assert.strictEqual(err,203);
         book.getBookForUser('0999999', function(err, res) {
           assert.ok(!err);
-          assert.strictEqual(res.bookInfo[0].bookKey, 9780521189064);
+          assert.strictEqual(res.bookInfo.bookKey, '9780521189064');
         });
         assert.ok(data);
 
@@ -62,30 +50,36 @@ describe('study.book',function(){
     it('should return 203 from a ISBN code',function(done){
       var book = new Book;
 
+      var obj = {page: '234', id: '0999999'};
 
-      var obj = {
-        userId: '0999999',
-        bookInfo: {
-          bookKey: 9780521189064,
-          bookStatus: false
-        }};
-      book.resetBookForUser(obj, function(err, data){
-        // assert.strictEqual(err,203);
-        assert.ok(data);
+      book.setProgress(obj, function(err, data){
+        assert.ok(!err);
+        book.getBookForUser('0999999', function(err, res) {
+          assert.ok(!err);
+          assert.strictEqual(res.setting.currentPage, '234');
+          done();
 
-        done();
+        });
+
       });
     });
 
-    it('should return 203 from a ISBN code',function(done){
+    it('should reset all user info',function(done){
       var book = new Book;
 
       var userId = '0999999';
-      book.getBookForUser(userId, function(err, data){
-        // assert.strictEqual(err,203);
-        assert.ok(!data);
 
-        done();
+      book.resetBookForUser(userId, function(err, data){
+        assert.ok(!err);
+        book.getBookForUser('0999999', function(err, res) {
+          assert.ok(!res);
+          assert.strictEqual(err.errCode, "404");
+
+
+          done();
+
+        });
+
       });
     });
 

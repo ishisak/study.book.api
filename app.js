@@ -20,8 +20,11 @@ if ('development' == app.get('env')){
 }
 
 app.get('/isbn/:num', route.getIsbn);
-app.get('/user/regist/:id/:num', route.registUser);
+app.get('/user/regist/:id/:num/:date', route.registUser);
 app.get('/user/get/:id', route.getUser);
+app.get('/user/reset/:id', route.resetUser);
+app.get('/user/update/:id/:page', route.setProgress);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
