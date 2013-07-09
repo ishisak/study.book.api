@@ -36,8 +36,22 @@ exports.registUser = function(req, res) {
   var book = new Book;
 
 //  var re = '0999999';
-  console.log('Get to ' + req.params.id + " and " + req.params.num);
+  console.log('Get to ' + req.params.id + " and " + req.params.num + " and " + req.params.date);
   book.setBookForUser(req.params, function(err, data){
+    if(err) {
+      res.send(err)
+    } else {
+      res.send(data);
+    }
+  });
+};
+
+exports.updateUser = function(req, res) {
+  var book = new Book;
+
+//  var re = '0999999';
+  console.log('Get to ' + req.params.id + " and " + req.params.num + " and " + req.params.date);
+  book.updateBookForUser(req.params, function(err, data){
     if(err) {
       res.send(err)
     } else {

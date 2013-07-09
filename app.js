@@ -21,9 +21,11 @@ if ('development' == app.get('env')){
 
 app.get('/isbn/:num', route.getIsbn);
 app.get('/user/regist/:id/:num/:date', route.registUser);
+app.get('/user/update/:id/:num/:date', route.updateUser);
 app.get('/user/get/:id', route.getUser);
 app.get('/user/reset/:id', route.resetUser);
-app.get('/user/update/:id/:page', route.setProgress);
+app.get('/user/progess/:id/:page', route.setProgress);
+
 
 
 http.createServer(app).listen(app.get('port'), function(){

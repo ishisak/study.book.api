@@ -36,31 +36,22 @@ describe('study.book',function(){
 
       var obj = {'id':'0999999', 'num': '9780521189064', 'date':'2013,07,31'}
       book.setBookForUser(obj, function(err, data){
-       // assert.strictEqual(err,203);
-        book.getBookForUser('0999999', function(err, res) {
-          assert.ok(!err);
-          assert.strictEqual(res.bookInfo.bookKey, '9780521189064');
-        });
-        assert.ok(data);
+        assert.ok(!err);
+        assert.strictEqual(data[0].bookInfo.bookKey, '9780521189064');
 
         done();
       });
     });
 
-    it('should return 203 from a ISBN code',function(done){
+    it('should return user data when update user data',function(done){
       var book = new Book;
 
-      var obj = {page: '234', id: '0999999'};
+      var obj = {date: '2013-08-01', id: '0999999'};
 
-      book.setProgress(obj, function(err, data){
+      book.updateBookForUser(obj, function(err, data){
         assert.ok(!err);
-        book.getBookForUser('0999999', function(err, res) {
-          assert.ok(!err);
-          assert.strictEqual(res.setting.currentPage, '234');
-          done();
-
-        });
-
+        assert.strictEqual(data.setting.currentPage, 1);
+        done();
       });
     });
 
@@ -71,15 +62,8 @@ describe('study.book',function(){
 
       book.resetBookForUser(userId, function(err, data){
         assert.ok(!err);
-        book.getBookForUser('0999999', function(err, res) {
-          assert.ok(!res);
-          assert.strictEqual(err.errCode, "404");
-
-
-          done();
-
-        });
-
+        assert.strictEqual(data.scssCode, "202");
+        done();
       });
     });
 
