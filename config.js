@@ -15,7 +15,7 @@
 
 function BookApi () {
   this.host = 'www.googleapis.com';
-  this.path = '/books/v1/volumes?q=isbn:';
+  this.path = '/books/v1/volumes?country=US&q=isbn:';
 }
 module.exports = BookApi;
 /*
